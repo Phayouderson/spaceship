@@ -5,59 +5,42 @@
     <title>Spaceship Race Game</title>
 </head>
 <body>
-    <!-- Container to display race information -->
     <div id="raceInfo"></div> 
 
     <script>
-        // Define the spaceshipRace function that starts the game
         function spaceshipRace() {
-            // Prompt the user to enter the distance to the star and store it in starDistance
             let starDistance = prompt("Enter the distance of the star (between 25 and 100):", "50");
             
-            // Convert the input to an integer
             starDistance = parseInt(starDistance);
-            
-            // Validate the input: repeat prompt if input is not a number or out of range
             while (isNaN(starDistance) || starDistance < 25 || starDistance > 100) {
                 starDistance = prompt("Invalid input. Please enter a number between 25 and 100:");
                 starDistance = parseInt(starDistance);
             }
-
-            // Initialize the positions of spaceship 1 and spaceship 2
             let spaceship1Position = 0;
             let spaceship2Position = 0;
-            
-            // Get the div element where race information will be displayed
             let raceInfoDiv = document.getElementById('raceInfo');
             
-            // Display the starting message with the star distance
             raceInfoDiv.innerHTML = 'Race started! Star is ' + starDistance + ' units away.<br>';
 
-            // Loop until one of the spaceships reaches the star
             while (spaceship1Position < starDistance && spaceship2Position < starDistance) {
-                // Generate a random boost for spaceship 1
                 let spaceship1Boost = Math.floor(Math.random() * 11);
-                // Generate a random boost for spaceship 2
                 let spaceship2Boost = Math.floor(Math.random() * 11);
 
-                // Update the positions of the spaceships based on their respective boosts
                 spaceship1Position += spaceship1Boost;
                 spaceship2Position += spaceship2Boost;
 
-                // Update the race information on the webpage
                 raceInfoDiv.innerHTML += 'Spaceship 1 is at position: ' + spaceship1Position + '<br>';
                 raceInfoDiv.innerHTML += 'Spaceship 2 is at position: ' + spaceship2Position + '<br>';
 
-                // Check if both spaceships have reached or passed the star distance
                 if (spaceship1Position >= starDistance && spaceship2Position >= starDistance) {
-                    raceInfoDiv.innerHTML += "It's a tie!<br>"; // Display a tie message
-                    break; // Exit the loop
+                    raceInfoDiv.innerHTML += "It's a tie!<br>"; 
+                    break; 
                 } else if (spaceship1Position >= starDistance) {
-                    raceInfoDiv.innerHTML += "Spaceship 1 wins!<br>"; // Display winning message for spaceship 1
-                    break; // Exit the loop
+                    raceInfoDiv.innerHTML += "Spaceship 1 wins!<br>"; 
+                    break; 
                 } else if (spaceship2Position >= starDistance) {
-                    raceInfoDiv.innerHTML += "Spaceship 2 wins!<br>"; // Display winning message for spaceship 2
-                    break; // Exit the loop
+                    raceInfoDiv.innerHTML += "Spaceship 2 wins!<br>"; 
+                    break; 
                 }
             }
         }
